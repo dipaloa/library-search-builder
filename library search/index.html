@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Canisius University Library | Research Search Builder</title>
+
+  <style>
+    :root {
+      --canisius-blue: #003b70;
+      --canisius-blue-dark: #00294d;
+      --canisius-blue-light: #eaf1f7;
+      --canisius-gold: #f5c242;
+      --canisius-gold-light: #fff7df;
+
+      --text: #252525;
+      --muted: #626b73;
+      --background: #f4f6f8;
+      --white: #ffffff;
+      --border: #d8dee5;
+
+      --success: #267348;
+      --danger: #a63d3d;
+
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 5px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.55;
+    }
+
+    /* =========================
+       CANISIUS HEADER
+       ========================= */
+
+    .site-header {
+      background: white
+      color: white;
+      border-bottom: 6px solid var(--canisius-gold);
+    }
+
+    .header-inner {
+      width: min(1050px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .griffin-mark {
+  width: 190px;
+  height: auto;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.griffin-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 27px;
+      font-weight: 700;
+      color: var(--canisius-gold);
+    }
+
+    .brand-text {
+      line-height: 1.15;
+    }
+
+    .brand-name {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-subtitle {
+      margin-top: 5px;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .header-link {
+      color: var(--canisius-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .header-link:hover {
+      color: var(--canisius-gold);
+      text-decoration: underline;
+    }
+
+    /* =========================
+       PAGE
+       ========================= */
+
+    .container {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0 65px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .intro h1 {
+      margin: 0 0 10px;
+      color: var(--canisius-blue);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+    }
+
+    .intro p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* =========================
+       STEPS
+       ========================= */
+
+    .step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      padding: 28px;
+      margin-bottom: 22px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+
+      border-radius: 50%;
+
+      background: var(--canisius-blue);
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .step-header h2 {
+      margin: 0;
+      color: var(--canisius-blue);
+      font-size: 1.35rem;
+    }
+
+    /* =========================
+       FORM ELEMENTS
+       ========================= */
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+
+      padding: 12px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 6px;
+
+      background: white;
+      color: var(--text);
+
+      font: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: 3px solid rgba(0, 59, 112, 0.14);
+      border-color: var(--canisius-blue);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .hint {
+      margin: 7px 0 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* =========================
+       EXAMPLES
+       ========================= */
+
+    .example {
+      background: var(--canisius-gold-light);
+
+      border-left: 4px solid var(--canisius-gold);
+
+      border-radius: 0 6px 6px 0;
+
+      padding: 13px 16px;
+
+      margin: 16px 0 20px;
+    }
+
+    /* =========================
+       BUTTONS
+       ========================= */
+
+    button {
+      border: none;
+      border-radius: 6px;
+
+      padding: 10px 16px;
+
+      font: inherit;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.12s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    button:focus-visible {
+      outline: 3px solid var(--canisius-gold);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--canisius-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--canisius-blue-dark);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-gold {
+      background: var(--canisius-gold);
+      color: var(--canisius-blue-dark);
+    }
+
+    .btn-gold:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-secondary {
+      background: #e9edf1;
+      color: var(--text);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: var(--danger);
+
+      padding: 5px 8px;
+
+      font-size: 0.88rem;
+    }
+
+    .btn-small {
+      padding: 7px 11px;
+      font-size: 0.88rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* =========================
+       CONCEPTS
+       ========================= */
+
+    .concept {
+      background: #fafbfc;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .concept-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .concept-main {
+      flex: 1;
+    }
+
+    .synonyms {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .synonym-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .synonym-row input {
+      flex: 1;
+    }
+
+    .empty-state {
+      color: var(--muted);
+      font-style: italic;
+      padding: 10px 0 18px;
+    }
+
+    /* =========================
+       BOOLEAN SEARCH
+       ========================= */
+
+    .boolean-help {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .boolean-card {
+      background: var(--canisius-blue-light);
+
+      border: 1px solid #cfdae5;
+      border-radius: 7px;
+
+      padding: 13px;
+    }
+
+    .boolean-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--canisius-blue);
+    }
+
+    .search-box textarea {
+      min-height: 105px;
+
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Consolas,
+        monospace;
+
+      font-size: 0.94rem;
+    }
+
+    /* =========================
+       LIBRARY SEARCH CTA
+       ========================= */
+
+    .library-search-card {
+      margin-top: 22px;
+
+      background: var(--canisius-blue);
+      color: white;
+
+      border-radius: 8px;
+
+      padding: 20px;
+    }
+
+    .library-search-card h3 {
+      margin: 0 0 7px;
+      font-size: 1.15rem;
+    }
+
+    .library-search-card p {
+      margin: 0 0 15px;
+      opacity: 0.92;
+      font-size: 0.93rem;
+    }
+
+    /* =========================
+       STATUS
+       ========================= */
+
+    .status {
+      display: none;
+
+      padding: 10px 13px;
+      margin-top: 12px;
+
+      border-radius: 6px;
+
+      background: #e8f5ed;
+      color: var(--success);
+
+      font-size: 0.92rem;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding-top: 10px;
+    }
+
+    footer a {
+      color: var(--canisius-blue);
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 650px) {
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .header-link {
+        display: none;
+      }
+
+      .step {
+        padding: 20px;
+      }
+
+      .boolean-help {
+        grid-template-columns: 1fr;
+      }
+
+      .concept-top {
+        flex-direction: column;
+      }
+
+      .synonym-row {
+        flex-direction: column;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- ==========================================================
+     CANISIUS HEADER
+     ========================================================== -->
+
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <div class="brand">
+
+      <a
+  href="https://library.canisius.edu/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="griffin-mark"
+  aria-label="Canisius University Library homepage"
+>
+  <img
+    src="Library Lockup_HOR.png"
+    alt="Canisius University Library"
+  >
+</a>
+
+      <div class="brand-text">
+
+        <div class="brand-name">
+          Build a Better Library Search
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <a
+      class="header-link"
+      href="https://canisius.primo.exlibrisgroup.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Search the Library
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<!-- ==========================================================
+     MAIN
+     ========================================================== -->
+
+<main class="container">
+
+
+  <div class="intro">
+
+    <h2>
+      Turn your research question into a focused search
+      using keywords, synonyms, and Boolean operators.
+    </h2>
+
+  </div>
+
+
+
+  <!-- ========================================================
+       STEP 1
+       ======================================================== -->
+
+  <section class="step">
+
+    <div class="step-header">
+
+      <div class="step-number">
+        1
+      </div>
+
+      <h2>
+        Start with Your Research Question
+      </h2>
+
+    </div>
+
+
+    <p>
+      Start by putting your research question into your own words. Ask yourself: <i>what do I want to know about this topic?</i>read
+      Don't worry about making it sound like a database search yet.
+    </p>
+
+
+    <div class="example">
+
+      <strong>Example:</strong><br>
+
+      How does social media use affect college students'
+      sleep?
+
+    </div>
+
+
+    <label for="researchQuestion">
+      Your research question
+    </label>
+
+
+    <textarearead
+      id="researchQuestion"
+      placeholder="Type your research question here..."
+    ></textarea>
+
+
+    <div class="button-row">
+
+      <button
+        type="button"
+        class="btn-primary"
+        id="identifyConceptsButton"
+      >
+        Identify Key Concepts
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       STEP 2
+       ======================================================== -->
+
+  <section class="step">
+
+    <div class="step-header">
+
+      <div class="step-number">
+        2
+      </div>
+
+      <h2>
+        Identify Your Key Concepts
+      </h2>
+
+    </div>
+
+
+    <p>
+      Break your question into the major ideas you need to
+      find information about. Usually 2–4 concepts are enough.
+    </p>
+
+
+    <div class="example">
+
+      <strong>Example:</strong><br>
+
+      <strong>College students</strong> +
+      <strong>social media</strong> +
+      <strong>sleep</strong>
+
+    </div>
+
+
+    <div id="conceptContainer">
+
+      <div class="empty-state">
+
+        Enter your research question above and click
+        <strong>Identify Key Concepts</strong>.
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="btn-secondary"
+      id="addConceptButton"
+    >
+      + Add Another Concept
+    </button>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       STEP 3
+       ======================================================== -->
+
+  <section class="step">
+
+    <div class="step-header">
+
+      <div class="step-number">
+        3
+      </div>
+
+      <h2>
+        Add Synonyms & Related Terms
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Databases don't know that two different words can describe
+      the same idea. Add alternate terms to make your search
+      more comprehensive.
+
+    </p>
+
+
+    <div class="example">
+
+      <strong>For example:</strong><br><br>
+
+      <strong>Social media</strong><br>
+
+      social networking · Instagram · Facebook · Snapchat<br><br>
+
+      <strong>College students</strong><br>
+
+      undergraduates · university students ·
+      postsecondary students<br><br>
+
+      <strong>Sleep</strong><br>
+
+      sleeping · sleep quality · rest · insomnia
+
+    </div>
+
+
+    <div id="synonymInstructions">
+
+      Add synonyms and related terms underneath each concept.
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================================
+       STEP 4
+       ======================================================== -->
+
+  <section class="step">
+
+    <div class="step-header">
+
+      <div class="step-number">
+        4
+      </div>
+
+      <h2>
+        Build Your Search
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Your terms are automatically combined into a Boolean
+      search. You can edit the search yourself before running it.
+
+    </p>
+
+
+    <div class="boolean-help">
+
+      <div class="boolean-card">
+
+        <strong>OR</strong>
+
+        Use OR between synonyms and related terms.
+
+      </div>
+
+
+      <div class="boolean-card">
+
+        <strong>AND</strong>
+
+        Use AND to connect different concepts.
+
+      </div>
+
+
+      <div class="boolean-card">
+
+        <strong>"Quotes"</strong>
+
+        Use quotation marks around exact phrases.
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top: 24px;">
+
+      <label for="booleanSearch">
+        Your Boolean search
+      </label>
+
+
+      <div class="search-box">
+
+        <textarea
+          id="booleanSearch"
+          placeholder="Your search will appear here..."
+        ></textarea>
+
+      </div>
+
+
+      <p class="hint">
+
+        You can edit this search manually. Use quotation marks
+        around phrases and an asterisk (*) for truncation.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- LIBRARY SEARCH -->
+
+    <div class="library-search-card">
+
+      <h3>
+        Ready to Search?
+      </h3>
+
+      <p>
+
+        Search for sources in the
+        Canisius University Library discovery system.
+
+      </p>
+
+
+      <button
+        type="button"
+        class="btn-gold"
+        id="searchLibraryButton"
+      >
+        Search Canisius Library
+      </button>
+
+    </div>
+
+
+
+    <div class="button-row">
+
+      <button
+        type="button"
+        class="btn-secondary"
+        id="copySearchButton"
+      >
+        Copy Search
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-secondary"
+        id="startOverButton"
+      >
+        Start Over
+      </button>
+
+    </div>
+
+
+    <div
+      id="copyStatus"
+      class="status"
+      role="status"
+    >
+      Search copied to your clipboard.
+    </div>
+
+  </section>
+
+
+
+  <footer>
+
+    <div>
+      Canisius University Library
+    </div>
+
+    <div style="margin-top: 5px;">
+
+      <a
+        href="https://canisius.primo.exlibrisgroup.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Library Search
+      </a>
+    </div>
+	<div>
+		<p>The code for this activity was created with assistance from ChatGPT.</p>
+	</div>
+
+  </footer>
+
+
+</main>
+
+
+
+<script>
+
+/* =============================================================
+   CANISIUS PRIMO CONFIGURATION
+   ============================================================= */
+
+const CANISIUS_PRIMO_URL =
+  "https://canisius.primo.exlibrisgroup.com/discovery/search";
+
+
+const CANISIUS_PRIMO_PARAMS = {
+
+  vid:
+    "01CANISIUS_INST:01CANISIUS_INST",
+
+  tab:
+    "Everything",
+
+  search_scope:
+    "SUNY_Rapido_Blended",
+
+  mode:
+    "basic",
+
+  displayMode:
+    "full",
+
+  bulkSize:
+    "10",
+
+  highlight:
+    "true",
+
+  dum:
+    "true",
+
+  displayField:
+    "all"
+
+};
+
+
+
+/* =============================================================
+   GET ELEMENTS
+   ============================================================= */
+
+const researchQuestion =
+  document.getElementById(
+    "researchQuestion"
+  );
+
+const conceptContainer =
+  document.getElementById(
+    "conceptContainer"
+  );
+
+const booleanSearch =
+  document.getElementById(
+    "booleanSearch"
+  );
+
+const copyStatus =
+  document.getElementById(
+    "copyStatus"
+  );
+
+
+
+/* =============================================================
+   IDENTIFY KEY CONCEPTS
+   =============================================================
+
+   IMPORTANT:
+
+   This intentionally does NOT attempt to identify or populate
+   keywords.
+
+   It simply creates three blank concept boxes.
+
+   The student does the concept-identification work.
+   ============================================================= */
+
+function identifyConcepts() {
+
+  const question =
+    researchQuestion.value.trim();
+
+
+  if (!question) {
+
+    alert(
+      "Please enter a research question first."
+    );
+
+    researchQuestion.focus();
+
+    return;
+
+  }
+
+
+  /*
+   * Create three EMPTY concept boxes.
+   */
+
+  conceptContainer.innerHTML = "";
+
+
+  for (
+    let i = 0;
+    i < 3;
+    i++
+  ) {
+
+    createConcept();
+
+  }
+
+
+  updateSearch();
+
+
+  /*
+   * Put the cursor in the first concept field.
+   */
+
+  const firstConcept =
+    conceptContainer.querySelector(
+      ".concept-input"
+    );
+
+
+  if (firstConcept) {
+    firstConcept.focus();
+  }
+
+}
+
+
+
+/* =============================================================
+   CREATE CONCEPT
+   ============================================================= */
+
+function createConcept() {
+
+  const concept =
+    document.createElement(
+      "div"
+    );
+
+
+  concept.className =
+    "concept";
+
+
+  concept.innerHTML = `
+
+    <div class="concept-top">
+
+      <div class="concept-main">
+
+        <label>
+          Main keyword or phrase
+        </label>
+
+        <input
+          type="text"
+          class="concept-input"
+          placeholder="Enter a key concept..."
+        >
+
+      </div>
+
+
+      <button
+        type="button"
+        class="btn-danger remove-concept"
+      >
+        Remove
+      </button>
+
+    </div>
+
+
+    <label>
+      Synonyms and related terms
+    </label>
+
+
+    <div class="synonyms">
+
+      <div class="synonym-row">
+
+        <input
+          type="text"
+          class="synonym-input"
+          placeholder="Add a synonym or related term..."
+        >
+
+        <button
+          type="button"
+          class="btn-danger btn-small remove-synonym"
+        >
+          Remove
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="btn-secondary btn-small add-synonym"
+      style="margin-top: 10px;"
+    >
+      + Add synonym
+    </button>
+
+  `;
+
+
+  conceptContainer.appendChild(
+    concept
+  );
+
+
+  /*
+   * Attach event listeners to this concept.
+   */
+
+  const conceptInput =
+    concept.querySelector(
+      ".concept-input"
+    );
+
+
+  conceptInput.addEventListener(
+    "input",
+    updateSearch
+  );
+
+
+  const removeConceptButton =
+    concept.querySelector(
+      ".remove-concept"
+    );
+
+
+  removeConceptButton.addEventListener(
+    "click",
+    function () {
+
+      concept.remove();
+
+      updateSearch();
+
+    }
+  );
+
+
+  const addSynonymButton =
+    concept.querySelector(
+      ".add-synonym"
+    );
+
+
+  addSynonymButton.addEventListener(
+    "click",
+    function () {
+
+      addSynonym(
+        concept
+      );
+
+    }
+  );
+
+
+  const removeSynonymButton =
+    concept.querySelector(
+      ".remove-synonym"
+    );
+
+
+  removeSynonymButton.addEventListener(
+    "click",
+    function () {
+
+      const row =
+        removeSynonymButton.closest(
+          ".synonym-row"
+        );
+
+      row.remove();
+
+      updateSearch();
+
+    }
+  );
+
+
+  const synonymInput =
+    concept.querySelector(
+      ".synonym-input"
+    );
+
+
+  synonymInput.addEventListener(
+    "input",
+    updateSearch
+  );
+
+}
+
+
+
+/* =============================================================
+   ADD CONCEPT
+   ============================================================= */
+
+function addConcept() {
+
+  createConcept();
+
+  updateSearch();
+
+}
+
+
+
+/* =============================================================
+   ADD SYNONYM
+   ============================================================= */
+
+function addSynonym(
+  concept
+) {
+
+  const synonyms =
+    concept.querySelector(
+      ".synonyms"
+    );
+
+
+  const row =
+    document.createElement(
+      "div"
+    );
+
+
+  row.className =
+    "synonym-row";
+
+
+  row.innerHTML = `
+
+    <input
+      type="text"
+      class="synonym-input"
+      placeholder="Add another related term..."
+    >
+
+    <button
+      type="button"
+      class="btn-danger btn-small remove-synonym"
+    >
+      Remove
+    </button>
+
+  `;
+
+
+  synonyms.appendChild(
+    row
+  );
+
+
+  /*
+   * Add input listener.
+   */
+
+  const input =
+    row.querySelector(
+      ".synonym-input"
+    );
+
+
+  input.addEventListener(
+    "input",
+    updateSearch
+  );
+
+
+  /*
+   * Add remove listener.
+   */
+
+  const removeButton =
+    row.querySelector(
+      ".remove-synonym"
+    );
+
+
+  removeButton.addEventListener(
+    "click",
+    function () {
+
+      row.remove();
+
+      updateSearch();
+
+    }
+  );
+
+
+  input.focus();
+
+}
+
+
+
+/* =============================================================
+   BUILD BOOLEAN SEARCH
+   ============================================================= */
+
+function updateSearch() {
+
+  const concepts =
+    document.querySelectorAll(
+      ".concept"
+    );
+
+
+  const groups = [];
+
+
+  concepts.forEach(
+    concept => {
+
+      const mainInput =
+        concept.querySelector(
+          ".concept-input"
+        );
+
+
+      const main =
+        mainInput
+          ? mainInput.value.trim()
+          : "";
+
+
+      const synonymInputs =
+        concept.querySelectorAll(
+          ".synonym-input"
+        );
+
+
+      const terms = [];
+
+
+      if (main) {
+        terms.push(main);
+      }
+
+
+      synonymInputs.forEach(
+        input => {
+
+          const value =
+            input.value.trim();
+
+
+          if (value) {
+            terms.push(value);
+          }
+
+        }
+      );
+
+
+      /*
+       * Completely empty concepts are ignored.
+       */
+
+      if (!terms.length) {
+        return;
+      }
+
+
+      const formatted =
+        terms.map(
+          formatTerm
+        );
+
+
+      let group;
+
+
+      if (
+        formatted.length === 1
+      ) {
+
+        group =
+          formatted[0];
+
+      } else {
+
+        group =
+          "(" +
+          formatted.join(
+            " OR "
+          ) +
+          ")";
+
+      }
+
+
+      groups.push(
+        group
+      );
+
+    }
+  );
+
+
+  /*
+   * Different concepts = AND.
+   */
+
+  booleanSearch.value =
+    groups.join(
+      " AND "
+    );
+
+}
+
+
+
+/* =============================================================
+   FORMAT SEARCH TERMS
+   ============================================================= */
+
+function formatTerm(
+  term
+) {
+
+  term =
+    term.trim();
+
+
+  /*
+   * Preserve terms already in quotation marks.
+   */
+
+  if (
+    term.startsWith('"') &&
+    term.endsWith('"')
+  ) {
+
+    return term;
+
+  }
+
+
+  /*
+   * Preserve truncation.
+   */
+
+  if (
+    term.endsWith("*")
+  ) {
+
+    return term;
+
+  }
+
+
+  /*
+   * Put multi-word phrases in quotation marks.
+   */
+
+  if (
+    term.includes(" ")
+  ) {
+
+    return `"${term}"`;
+
+  }
+
+
+  return term;
+
+}
+
+
+
+/* =============================================================
+   SEARCH CANISIUS LIBRARY
+   ============================================================= */
+
+function searchCanisiusLibrary() {
+
+  const search =
+    booleanSearch.value.trim();
+
+
+  if (!search) {
+
+    alert(
+      "Please enter at least one keyword or concept before searching."
+    );
+
+    booleanSearch.focus();
+
+    return;
+
+  }
+
+
+  /*
+   * Create Primo query parameters.
+   */
+
+  const params =
+    new URLSearchParams();
+
+
+  Object.entries(
+    CANISIUS_PRIMO_PARAMS
+  ).forEach(
+    ([key, value]) => {
+
+      params.set(
+        key,
+        value
+      );
+
+    }
+  );
+
+
+  /*
+   * Primo basic-search syntax.
+   */
+
+  params.set(
+    "query",
+    `any,contains,${search}`
+  );
+
+
+  const searchURL =
+    CANISIUS_PRIMO_URL +
+    "?" +
+    params.toString();
+
+
+  window.open(
+    searchURL,
+    "_blank"
+  );
+
+}
+
+
+
+/* =============================================================
+   COPY SEARCH
+   ============================================================= */
+
+async function copySearch() {
+
+  const search =
+    booleanSearch.value.trim();
+
+
+  if (!search) {
+
+    alert(
+      "There is no search to copy yet."
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    await navigator.clipboard.writeText(
+      search
+    );
+
+
+    copyStatus.style.display =
+      "block";
+
+
+    setTimeout(
+      function () {
+
+        copyStatus.style.display =
+          "none";
+
+      },
+      2500
+    );
+
+
+  } catch (error) {
+
+    /*
+     * Fallback for browsers that block
+     * navigator.clipboard.
+     */
+
+    booleanSearch.focus();
+
+    booleanSearch.select();
+
+    document.execCommand(
+      "copy"
+    );
+
+
+    copyStatus.style.display =
+      "block";
+
+
+    setTimeout(
+      function () {
+
+        copyStatus.style.display =
+          "none";
+
+      },
+      2500
+    );
+
+  }
+
+}
+
+
+
+/* =============================================================
+   START OVER
+   ============================================================= */
+
+function startOver() {
+
+  researchQuestion.value =
+    "";
+
+  booleanSearch.value =
+    "";
+
+
+  conceptContainer.innerHTML = `
+
+    <div class="empty-state">
+
+      Enter your research question above and click
+      <strong>Identify Key Concepts</strong>.
+
+    </div>
+
+  `;
+
+
+  researchQuestion.focus();
+
+}
+
+
+
+/* =============================================================
+   BUTTON EVENT LISTENERS
+   ============================================================= */
+
+document
+  .getElementById(
+    "identifyConceptsButton"
+  )
+  .addEventListener(
+    "click",
+    identifyConcepts
+  );
+
+
+document
+  .getElementById(
+    "addConceptButton"
+  )
+  .addEventListener(
+    "click",
+    addConcept
+  );
+
+
+document
+  .getElementById(
+    "searchLibraryButton"
+  )
+  .addEventListener(
+    "click",
+    searchCanisiusLibrary
+  );
+
+
+document
+  .getElementById(
+    "copySearchButton"
+  )
+  .addEventListener(
+    "click",
+    copySearch
+  );
+
+
+document
+  .getElementById(
+    "startOverButton"
+  )
+  .addEventListener(
+    "click",
+    startOver
+  );
+
+
+
+/* =============================================================
+   INITIAL STATE
+   ============================================================= */
+
+booleanSearch.value = "";
+
+</script>
+
+</body>
+</html>
+```
